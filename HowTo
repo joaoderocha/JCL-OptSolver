@@ -1,0 +1,21 @@
+The global vars used by JCL: 
+
+float lower -> indicates the lower bound
+float upper -> indicates the upper bound
+//both vars are used by pre-processing operations, before the backtracking kernel execution. Users must use or implement their own
+//strategies for pre-processing. The package to insert new Class files is -- package tsp_jcl.user.lower_upper_calculus;
+
+ObjectSet<String> vertices -> represent a set of vertices names as Strings. Useful to traverse the graph in any order
+String path -> represent the best graph path found, i.e., only the vertices names of the path 
+
+users can create any other global variable (graphs, distance matrix, etc..) during the load input phase 
+(package tsp_jcl.kernel.load_input;). The framework implements several type of input load strategies. 
+For instance, let´s consider the X,Y coordinates input dataset with all positions of all vertices,
+becoming possible to build multiple edges, representing the cities distances in a TSP solver solution. There is also the possibility to
+load input data in the form of matrix distances, so the framework can load the edges and not calculate them. The users can use these
+implementations to load input data or implement their own from scratch.
+
+During the load phase users must create all variables used in the code, so during the code it is possible to obtain any variable content
+from the cluster and save the content back to the cluster transparently (using the Class JCLglobalVariablesAccess from package
+(package tsp_jcl.kernel.util;). User can adopt graphs mounted on-the-fly during the evaluation phase of backtracking, 
+thus the load phase can be just one state of the graph during its dynamic lifecycle.     
