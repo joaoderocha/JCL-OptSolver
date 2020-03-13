@@ -27,10 +27,10 @@ jobs:
     - name: Git Semantic Version
       uses: PaulHatch/semantic-version@v2.1.1
       with:
-        branch: "master"
-        tag_prefix:"v"
-        major_pattern: "(BC)"
-        minor_patter: "(MC)"
-        format: "${major}.${minor}.${patch}.${increment}"
+	branch: "master"
+	tag_prefix: "v"
+	major_pattern: "(BC)"
+	minor_patter: "(MC)"
+	format: "${major}.${minor}.${patch}.${increment}"
 	change_path: "src/"
       run: ./gradlew build
