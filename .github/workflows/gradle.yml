@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-
+	
     runs-on: ubuntu-latest
 
     steps:
@@ -24,3 +24,13 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+
+    - name: Git Semantic Version
+      uses: PaulHatch/semantic-version@v2.1.1
+      with:
+        branch: "master"
+        tag_prefix:"v"
+        major_pattern: "(BC)"
+        minor_patter: "(MC)"
+        format: "${major}.${minor}.${patch}.${increment}"
+	change_path: "src/"
