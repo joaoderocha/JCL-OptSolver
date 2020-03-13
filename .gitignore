@@ -1,0 +1,12 @@
+.gradle
+build/
+
+
+gradle-app.settings
+
+!gradle-wrapper.jar
+
+.gradletasknamecache
+
+
+/bin/
