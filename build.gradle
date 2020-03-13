@@ -12,6 +12,9 @@ plugins {
 
     // Apply the application plugin to add support for building a CLI application.
     id 'application'
+    
+    // sonar
+    id "org.sonarqube" version "2.8"
 }
 
 repositories {
@@ -31,4 +34,13 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClassName = 'kernel.Main'
+}
+
+sonarqube {
+  properties {
+    property "sonar.projectKey", "joaoderocha_JCL-OptSolver"
+    property "sonar.organization", "hpclab"
+    property "sonar.host.url", "https://sonarcloud.io"
+    property "sonar.login", "c0a76d5be05aedd9b176ac69d022ef7777a60c99"
+  }
 }
