@@ -33,4 +33,3 @@ jobs:
         minor_patter: "(MC)"
         format: "${major}.${minor}.${patch}.${increment}"
         change_path: "src/"
-      run: ./gradlew build
