@@ -59,3 +59,20 @@ Cria o PR selecionando o branch que voce acabou de criar.
 ### "subject"
 
 Utilizando verbos no imperativo e no presente (inclui, altera, testa...) descreva o que aquele commit especifico esta fazendo ao codigo
+
+
+## Atualizar dependencia
+
+Para atualizar as dependencias, precisamos atualizar o build.gradle . Ele e o responsavel por determinar as dependencias do projeto.
+
+A maioria das dependencias Java estao no maven central. Normalmente as aplicacoes ja mostram como adicionar no gradle.
+
+Depois de adicionar a dependencia, pela linha de comando, execute:
+
+```
+gradle cleanEclipse eclipse
+```
+
+O comando analiza e adiciona as novas dependencias do eclipse.
+
+Reinicie o eclipse para que ele reconheca o classpath.
