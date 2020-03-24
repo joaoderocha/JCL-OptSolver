@@ -126,3 +126,10 @@ Os pacotes devem ser todos minusculos e seguindo o kebab-case *SE* necessario
 package package-kebab-case
 ```
 
+# Clone o projeto
+
+# Instale SonarLint 5.0 no eclipse Marketplace
+
+# Instale Buildship Gradle Integration 3.0
+
+
