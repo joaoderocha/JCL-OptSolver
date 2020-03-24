@@ -92,5 +92,9 @@ comando:
 ```
 clicar duas vezes no arquivo tambem funciona
 
+# Instale SonarLint 5.0 no eclipse Marketplace
+
+# Instale Buildship Gradle Integration 3.0
+
 # Clone o projeto
 
