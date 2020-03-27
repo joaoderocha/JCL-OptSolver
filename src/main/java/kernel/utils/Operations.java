@@ -6,7 +6,10 @@ import java.math.BigInteger;
  * Operations.test
  */
 public class Operations {
-	public BigInteger factorial(BigInteger i) {
+	private Operations() {
+	}
+
+	public static BigInteger factorial(BigInteger i) {
 		if (i == BigInteger.ZERO || i == BigInteger.ONE) {
 			return BigInteger.ONE;
 		} else {
