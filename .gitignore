@@ -10,3 +10,6 @@ gradle-app.settings
 
 
 /bin/
+
+!extr-jar
+
