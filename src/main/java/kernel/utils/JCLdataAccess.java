@@ -1,4 +1,4 @@
-package utils;
+package kernel.utils;
 
 import java.io.FileInputStream;
 import java.util.List;
