@@ -38,6 +38,7 @@ repositories {
 dependencies {
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:28.1-jre'
+    implementation files('extr-jar/jclUser.jar', 'ext-jar/JCL_User-1.0.jar')
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
