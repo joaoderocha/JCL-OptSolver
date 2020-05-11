@@ -1,4 +1,4 @@
-package user_commands;
+package kernel.user_commands;
 
 public interface LoadInterface {
 
