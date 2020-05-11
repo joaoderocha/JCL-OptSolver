@@ -14,3 +14,4 @@ gradle-app.settings
 !extr-jar
 
 .classpath
+.project
