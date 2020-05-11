@@ -1,10 +1,10 @@
-package user_commands;
+package kernel.user_commands;
 
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-import javafx.util.Pair;
+import utils.Pair;
 
 /**
  *
@@ -16,14 +16,12 @@ public abstract class LoadAbstract implements LoadInterface {
 	@Override
 	public void load(String filePath) {
 		final JCL_facade jcl = JCL_FacadeImpl.getInstance();
-		jcl.instantiateGlobalVar("upper", new Double(Double.MAX_VALUE));
-		jcl.instantiateGlobalVar("lower", new Double(Double.MIN_VALUE));
+		jcl.instantiateGlobalVar("upper", Double.valueOf(Double.MAX_VALUE));
+		jcl.instantiateGlobalVar("lower", Double.valueOf(Double.MIN_VALUE));
 		jcl.instantiateGlobalVar("path", "");
-		Pair<String, Double> x = new Pair<>("", Double.MAX_VALUE);
+		final Pair<String, Double> x = new Pair<>("", Double.MAX_VALUE);
 		jcl.instantiateGlobalVar("bestResult", x);
 		final ObjectSet<String> vertices = new ObjectOpenHashSet<>();
 		jcl.instantiateGlobalVar("vertices", vertices);
-		x = null;
 	}
-
 }
