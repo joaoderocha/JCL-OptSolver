@@ -4,7 +4,7 @@ import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-import javafx.util.Pair;
+import utils.Pair;
 
 /**
  *
@@ -24,5 +24,4 @@ public abstract class LoadAbstract implements LoadInterface {
 		final ObjectSet<String> vertices = new ObjectOpenHashSet<>();
 		jcl.instantiateGlobalVar("vertices", vertices);
 	}
-
 }
