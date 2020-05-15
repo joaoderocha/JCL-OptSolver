@@ -1,13 +1,13 @@
 package kernel.utils;
 
+import implementations.dm_kernel.user.JCL_FacadeImpl;
+import interfaces.kernel.JCL_facade;
 import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
 
-import implementations.dm_kernel.user.JCL_FacadeImpl;
-import interfaces.kernel.JCL_facade;
 
-public class JCLdataAccess {
+public class JcldataAccess {
     /**
      * 
      * @param name String value of variable to be instantiated on cluster
