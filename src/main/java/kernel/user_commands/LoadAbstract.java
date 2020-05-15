@@ -1,10 +1,10 @@
 package kernel.user_commands;
 
+import kernel.utils.Pair;
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
-import utils.Pair;
 
 /**
  *
@@ -14,7 +14,7 @@ import utils.Pair;
 public abstract class LoadAbstract implements LoadInterface {
 
 	@Override
-	public void load(String filePath) {
+	public void load(final String filePath) {
 		final JCL_facade jcl = JCL_FacadeImpl.getInstance();
 		jcl.instantiateGlobalVar("upper", Double.valueOf(Double.MAX_VALUE));
 		jcl.instantiateGlobalVar("lower", Double.valueOf(Double.MIN_VALUE));
