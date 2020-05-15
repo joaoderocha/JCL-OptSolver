@@ -86,25 +86,21 @@ Reinicie ou deslogue da maquina para fazer efeito e utilize o comando
 java -v
 ```
 
-# Instalando Eclipse
+# Instalando e configurando Visual Studio Code
 
-Baixa o tar.gz do [eclipse](https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-12/R/eclipse-inst-linux64.tar.gz)
-
-
-Extraia o arquivo em alguma pasta com 
+Para instalar no linux utilize o comando
 
 ```
-sudo tar -xvzf <ARQUIVO>
+sudo snap install code --classic
 ```
 
-dentro da pasta extraida, execute o arquivo 
-comando:
+Ou baixe pelo site oficial do [VSCode](https://code.visualstudio.com/Download)
 
-```
-./eclipse-inst
-```
-
-clicar duas vezes no arquivo tambem funciona
+Instalar as seguintes extensões:
+[Java Extension Pack](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack)
+[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
+[Checkstyle for Java](https://marketplace.visualstudio.com/items?itemName=shengchen.vscode-checkstyle)
+[Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme) (Opcional)
 
 # nomeclaturas
 
@@ -127,9 +123,3 @@ package package-kebab-case
 ```
 
 # Clone o projeto
-
-# Instale SonarLint 5.0 no eclipse Marketplace
-
-# Instale Buildship Gradle Integration 3.0
-
-
