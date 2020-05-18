@@ -7,6 +7,7 @@ import java.math.BigInteger;
  */
 public class Operations {
 	private Operations() {
+
 	}
 
 	public static BigInteger factorial(BigInteger i) {

@@ -2,23 +2,32 @@ package kernel.utils;
 
 import java.math.BigInteger;
 import java.util.List;
-
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
-public class TrotterJhonson {
+import kernel.exception.JCLoptException;
+import static kernel.utils.Operations.factorial;
+
+public class TrotterJhonson extends JCLoptException {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = -2566543799676866179L;
 	private int tam; // tamanho da instancia
 	private List<Integer> currentPermutation; // permutation corrente
 	private BigInteger maxPerm;
 	private BigInteger rank;
 
-	public TrotterJhonson(int n) {
+	public TrotterJhonson(int n) throws IllegalArgumentException {
+		if (n <= 0) {
+			throw new IllegalArgumentException("Instance size can't be bellow 0");		
+		}
 		this.tam = n;
 		this.currentPermutation = new IntArrayList();
 		this.maxPerm = factorial(BigInteger.valueOf(n));
 		for (int i = 1, j = 1; i <= this.tam; i++, j++) {
 			this.currentPermutation.add(j);
 		}
-		this.setRank(BigInteger.valueOf(rankingPermutation(currentPermutation)));
+		this.setRank(BigInteger.valueOf(rankPermutation(currentPermutation)));
 	}
 
 	public int getTam() {
@@ -36,8 +45,7 @@ public class TrotterJhonson {
 		this.setRank(ranking);
 	}
 
-	public int rankingPermutation(List<Integer> atual) {
-
+	public int rankPermutation(List<Integer> atual) {
 		int r = 0;
 		int k = 0;
 		int i = 0;
@@ -61,7 +69,7 @@ public class TrotterJhonson {
 		return r;
 	}
 
-	public List<Integer> unrankingPermutation(BigInteger rank) {
+	public List<Integer> unrankPermutation(BigInteger rank) {
 		this.currentPermutation = new IntArrayList();
 		for (int n = 0; n < this.tam; n++) {
 			this.currentPermutation.add(n);
@@ -167,7 +175,6 @@ public class TrotterJhonson {
 			}
 		}
 		if (m == 1) {
-			System.out.println("fim das permutacoes");
 			return retorno;
 		}
 		return retorno;
@@ -179,27 +186,11 @@ public class TrotterJhonson {
 	}
 
 	public int getCurrentRanking() {
-		return rankingPermutation(this.currentPermutation);
+		return rankPermutation(this.currentPermutation);
 	}
 
 	public List<Integer> getCurrentPermutation() {
 		return this.currentPermutation;
-	}
-
-	public void printCurrentPermutation() {
-		System.out.print(this.currentPermutation);
-	}
-
-	public void printLnCurrentPermutation() {
-		System.out.print(this.currentPermutation + "\n");
-	}
-
-	private BigInteger factorial(BigInteger i) {
-		if (i == BigInteger.ZERO || i == BigInteger.ONE) {
-			return BigInteger.ONE;
-		} else {
-			return i.multiply(factorial(i.subtract(BigInteger.ONE)));
-		}
 	}
 
 	public BigInteger getRank() {
@@ -208,7 +199,7 @@ public class TrotterJhonson {
 
 	public void setRank(BigInteger rank) {
 		this.rank = rank;
-		this.currentPermutation = unrankingPermutation(rank);
+		this.currentPermutation = unrankPermutation(rank);
 	}
 
 }

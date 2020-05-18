@@ -3,8 +3,6 @@ package kernel.utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import utils.Pair;
-
 public class PairTest {
 
 	@Test
