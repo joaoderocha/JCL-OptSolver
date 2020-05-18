@@ -1,9 +1,6 @@
 package kernel.exception;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 public class JCLoptExceptionTest {
@@ -41,15 +38,11 @@ public class JCLoptExceptionTest {
     @Test
     public void Test() {
         final Throwable cause = new Throwable();
-        boolean flagT = true;
-        boolean flagF = false;
         try {
-            throw new JCLoptException("msg", cause, flagT, flagF);
+            throw new JCLoptException("msg", cause, true, true);
         } catch (final JCLoptException error) {
             assertEquals(error.getMessage(), "msg");
             assertEquals(error.getCause(), cause);
-            assertTrue(flagT);
-            assertFalse(flagF);
         }
     }
 }
