@@ -8,8 +8,11 @@ public class JclOptSingleton implements JclOptObject {
 
     public Object getInstance() {
         if (instance == null) {
-            JclOptObject obj = new JclOptSingleton();
-            return obj;
+            synchronized (JclOptNonSingleton.class) {
+                if (instance == null) {
+                    this.instance = new JclOptSingleton();
+                }
+            }
         }
         return instance;
     }
