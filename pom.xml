@@ -47,4 +47,11 @@
         <systemPath>${basedir}/extr-jar/JCL_User-1.0.jar</systemPath>
     </dependency>
   </dependencies>
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Packages</name>
+      <url>https://maven.pkg.github.com/joaoderocha/JCL-OptSolver</url>
+    </repository>
+  </distributionManagement>
 </project>
