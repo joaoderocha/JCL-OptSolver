@@ -1,4 +1,4 @@
-package kernel.utils;
+package common;
 
 import java.util.Objects;
 

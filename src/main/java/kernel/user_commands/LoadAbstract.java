@@ -1,6 +1,6 @@
 package kernel.user_commands;
 
-import kernel.utils.Pair;
+import common.Pair;
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;

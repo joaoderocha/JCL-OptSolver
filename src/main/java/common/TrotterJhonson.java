@@ -1,11 +1,12 @@
-package kernel.utils;
+package common;
+
+import static common.Operations.factorial;
 
 import java.math.BigInteger;
 import java.util.List;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
 import kernel.exception.JCLoptException;
-import static kernel.utils.Operations.factorial;
 
 public class TrotterJhonson extends JCLoptException {
 	/**

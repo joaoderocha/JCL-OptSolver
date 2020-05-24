@@ -1,9 +1,11 @@
-package kernel.utils;
+package common;
 
 import java.math.BigInteger;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import common.Operations;
 
 public class OperationsTest {
 

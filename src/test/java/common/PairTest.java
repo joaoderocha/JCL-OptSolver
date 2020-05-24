@@ -1,7 +1,9 @@
-package kernel.utils;
+package common;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import common.Pair;
 
 public class PairTest {
 

@@ -1,10 +1,12 @@
-package kernel.utils;
+package common;
 
 
 import java.math.BigInteger;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import common.TrotterJhonson;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 
 
