@@ -2,7 +2,7 @@ package kernel.utils;
 
 public class JclOptNonSingleton implements JclOptObject {
 
-    public Object getInstance() {
+    public JclOptObject getInstance() {
         JclOptObject obj = new JclOptNonSingleton();
         return obj;
     }

@@ -6,7 +6,7 @@ public class JclOptSingleton implements JclOptObject {
     private JclOptSingleton() {
     }
 
-    public Object getInstance() {
+    public JclOptObject getInstance() {
         if (instance == null) {
             synchronized (JclOptNonSingleton.class) {
                 if (instance == null) {
