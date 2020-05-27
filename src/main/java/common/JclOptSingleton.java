@@ -1,19 +1,24 @@
 package common;
 
 public class JclOptSingleton implements JclOptObject {
-    private JclOptObject instance;
+    private static JclOptSingleton instance;
 
-    private JclOptSingleton() {
+    protected JclOptSingleton() {
     }
 
-    public JclOptObject getInstance() {
+    public static JclOptSingleton instantiate() {
         if (instance == null) {
-            synchronized (JclOptNonSingleton.class) {
+            synchronized (JclOptSingleton.class) {
                 if (instance == null) {
-                    this.instance = new JclOptSingleton();
+                    instance = new JclOptSingleton();
                 }
             }
         }
+        return instance;
+    }
+
+    @Override
+    public JclOptObject getInstance() {
         return instance;
     }
 }

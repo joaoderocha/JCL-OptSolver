@@ -1,5 +1,5 @@
 package common;
 
 public interface JclOptObject {
-    public JclOptObject getInstance();
+    public abstract JclOptObject getInstance();
 }

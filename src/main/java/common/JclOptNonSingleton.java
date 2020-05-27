@@ -1,9 +1,8 @@
 package common;
 
-public class JclOptNonSingleton implements JclOptObject {
-
-    public JclOptObject getInstance() {
-        JclOptObject obj = new JclOptNonSingleton();
-        return obj;
+public abstract class JclOptNonSingleton implements JclOptObject {
+    protected JclOptNonSingleton(){
+        super();
     }
+    public abstract JclOptObject getInstance();
 }
