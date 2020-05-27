@@ -1,4 +1,4 @@
-package kernel.utils;
+package common;
 
 public class JclOptNonSingleton implements JclOptObject {
 
