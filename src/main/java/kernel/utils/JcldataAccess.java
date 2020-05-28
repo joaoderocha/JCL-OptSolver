@@ -6,8 +6,18 @@ import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
 
+public class JcldataAccess{
+    private static JcldataAccess instance;
 
-public class JcldataAccess {
+    private JcldataAccess(){}
+
+    public static JcldataAccess getInstance() {
+        if (instance == null) {
+            instance = new JcldataAccess();
+        }
+        return instance;
+    }
+
     /**
      * 
      * @param name String value of variable to be instantiated on cluster
@@ -96,6 +106,14 @@ public class JcldataAccess {
             jcl.setValueUnlocking(name, vars.get(i));
             i++;
         }
+    }
+
+    public static JCL_facade getLambari() {
+        return JCL_FacadeImpl.getInstanceLambari();
+    }
+
+    public static JCL_facade getPacu(){
+        return JCL_FacadeImpl.getInstancePacu();
     }
 
 }
