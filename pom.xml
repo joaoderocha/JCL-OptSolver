@@ -49,7 +49,7 @@
   </dependencies>
   <distributionManagement>
     <repository>
-      <id>github</id>
+      <id>JCL-OptS</id>
       <name>GitHub Packages</name>
       <url>https://maven.pkg.github.com/joaoderocha/JCL-OptSolver</url>
     </repository>
