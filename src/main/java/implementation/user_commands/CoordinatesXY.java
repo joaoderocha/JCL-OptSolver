@@ -5,13 +5,13 @@ import java.io.FileReader;
 import java.util.LinkedList;
 import java.util.List;
 
-import common.JclOptObject;
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.Object2DoubleMap;
 import it.unimi.dsi.fastutil.objects.Object2DoubleOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import kernel.user_commands.LoadAbstract;
+import kernel.user_commands.LoadInterface;
 import kernel.utils.JcldataAccess;
 
 /**
@@ -29,18 +29,20 @@ import kernel.utils.JcldataAccess;
  *         21.0 45.0 11 37.0 155.0 12 -38.0 35.0 13 -5.0 -24.0 14 70.0 -74. EOF
  */
 public class CoordinatesXY extends LoadAbstract {
+	static CoordinatesXY instance;
+
 	// monta a tabela de pesos entre os vertices
 	@Override
 	public void load(final String filePath) {
 		super.load(filePath);
 		try {
 			final JCL_facade jcl = JCL_FacadeImpl.getInstance();
-			final Object2DoubleMap<String> distances = new Object2DoubleOpenHashMap<String>();
+			final Object2DoubleMap<String> distances = new Object2DoubleOpenHashMap<>();
 
 			BufferedReader in = new BufferedReader(new FileReader(filePath));
 			String str = null;
 
-			List<String> inputLimpos = new LinkedList<String>();
+			List<String> inputLimpos = new LinkedList<>();
 
 			double lower = 0;
 
@@ -50,8 +52,9 @@ public class CoordinatesXY extends LoadAbstract {
 					String[] inputDetalhes = str.split(" ");
 					StringBuilder sb = new StringBuilder();
 					for (final String frag : inputDetalhes) {
-						if (!frag.equals(""))
+						if (!frag.equals("")) {
 							sb.append(frag + ":");
+						}
 					}
 					inputLimpos.add(sb.toString());
 					sb = null;
@@ -88,10 +91,12 @@ public class CoordinatesXY extends LoadAbstract {
 
 						distances.put("$" + umaEntradaDetalhe[0] + "$:$" + outraEntradaDetalhe[0] + "$", d);
 
-						if (d < menorD)
+						if (d < menorD) {
 							menorD = d;
-						if (d > maiorD)
+						}
+						if (d > maiorD) {
 							maiorD = d;
+						}
 
 					}
 					outraEntradaDetalhe = null;
@@ -101,8 +106,9 @@ public class CoordinatesXY extends LoadAbstract {
 				distances.put("$" + umaEntradaDetalhe[0] + "$:$longerD$", maiorD);
 
 				lower += menorD;
-				if (lowest > menorD)
+				if (lowest > menorD) {
 					lowest = menorD;
+				}
 
 				distances.put("$" + umaEntradaDetalhe[0] + "$:$X$", Float.parseFloat(umaEntradaDetalhe[1]));
 				distances.put("$" + umaEntradaDetalhe[0] + "$:$Y$", Float.parseFloat(umaEntradaDetalhe[2]));
@@ -130,12 +136,19 @@ public class CoordinatesXY extends LoadAbstract {
 
 	}
 
-	@Override
-	public JclOptObject getInstance() {
-		return new CoordinatesXY();
+	public static LoadInterface instantiate() {
+		if (instance == null) {
+			instance = new CoordinatesXY();
+		}
+		return instance;
 	}
 
 	private CoordinatesXY() {
+	}
+
+	@Override
+	public LoadInterface getInstance() {
+		return instance;
 	}
 
 }

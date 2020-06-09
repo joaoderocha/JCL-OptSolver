@@ -1,9 +1,10 @@
 package common;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import kernel.utils.FileHunter;
 
 public class JclOptFactory {
 	private static JclOptFactory instance;
@@ -18,33 +19,37 @@ public class JclOptFactory {
 		return instance;
 	}
 
-	public Object getInstance(final String fileName) {
+	public Object getInstance(final String fileName)
+			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		Method m = null;
 		Object instance = null;
+		final FileHunter fh = FileHunter.getInstance();
 		try {
-			final File f = new File(System.getProperty("user.dir"));
-
-			final File[] matchingFiles = f.listFiles(new FilenameFilter() {
-				@Override
-				public boolean accept(final File dir, final String name) {
-					return name.startsWith(fileName) && name.endsWith("java");
-				}
-			});
+			final File[] matchingFiles = fh.search(fileName);
+			System.out.println(relativise(matchingFiles[0].getAbsolutePath()));
 			if (matchingFiles.length != 0) {
-				final Class<?> c = Class.forName(matchingFiles[0].getAbsolutePath());
-				m = c.getMethod("getInstance", null);
+				final Class<?> c = Class.forName("implementation.user_commands.CoordinatesXY");
+				System.out.println(c);
+				m = c.getMethod("instantiate", null);
+				System.out.println(m);
+				instance = m.invoke(null, null);
 			}
 		} catch (final ClassNotFoundException | NoSuchMethodException | SecurityException
 				| IllegalArgumentException e) {
 			return null;
-		} finally {
-			try {
-				instance = m.invoke(null, null);
-			} catch (final IllegalArgumentException | InvocationTargetException | IllegalAccessException e) {
-				return null;
-			}
 		}
+
 		return instance;
 	}
+
+	private String relativise(final String filepath) {
+		final String base = System.getProperty("user.dir");
+
+		return new File(base).toURI().relativize(new File(filepath).toURI()).getPath();
+	}
+
+//	private String toPackage(String relativeFilepath) {
+//
+//	}
 }

@@ -3,20 +3,22 @@ package implementation.user_commands;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-import common.JclOptObject;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import kernel.user_commands.LoadAbstract;
+import kernel.user_commands.LoadInterface;
 import kernel.utils.JcldataAccess;
 
 public class DistanceMatrix extends LoadAbstract {
+	static DistanceMatrix instance;
+
 	@Override
 	public void load(final String filePath) {
 		super.load(filePath);
 		try {
-			final Object2ObjectMap<String, Float> distances = new Object2ObjectOpenHashMap<String, Float>();
+			final Object2ObjectMap<String, Float> distances = new Object2ObjectOpenHashMap<>();
 
 			BufferedReader in = new BufferedReader(new FileReader(filePath));
 			String str = null;
@@ -32,8 +34,9 @@ public class DistanceMatrix extends LoadAbstract {
 					if (matrix == null) {
 						matrixSize = 0;
 						for (final String frag : inputDetalhes) {
-							if (!frag.equals(""))
+							if (!frag.equals("")) {
 								matrixSize++;
+							}
 						}
 						System.out.println("dimens�o da matriz: " + matrixSize);
 						matrix = new float[matrixSize][matrixSize];
@@ -69,10 +72,12 @@ public class DistanceMatrix extends LoadAbstract {
 				for (int j = 0; j < matrix.length; j++) {
 					if (i != j) {
 						distances.put("$" + (i + 1) + "$:$" + (j + 1) + "$", matrix[i][j]);
-						if (matrix[i][j] < menorD)
+						if (matrix[i][j] < menorD) {
 							menorD = matrix[i][j];
-						if (matrix[i][j] > maiorD)
+						}
+						if (matrix[i][j] > maiorD) {
 							maiorD = matrix[i][j];
+						}
 
 					}
 				}
@@ -81,8 +86,9 @@ public class DistanceMatrix extends LoadAbstract {
 				distances.put("$" + (i + 1) + "$:$longerD$", maiorD);
 
 				lower += menorD;
-				if (lowest > menorD)
+				if (lowest > menorD) {
 					lowest = menorD;
+				}
 
 			}
 
@@ -102,8 +108,15 @@ public class DistanceMatrix extends LoadAbstract {
 		}
 	}
 
+	public static LoadInterface instantiate() {
+		if (instance == null) {
+			instance = new DistanceMatrix();
+		}
+		return instance;
+	}
+
 	@Override
-	public JclOptObject getInstance() {
+	public LoadInterface getInstance() {
 		return new DistanceMatrix();
 	}
 
