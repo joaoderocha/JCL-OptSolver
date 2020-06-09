@@ -27,16 +27,15 @@ public class JclOptFactory {
 		final FileHunter fh = FileHunter.getInstance();
 		try {
 			final File[] matchingFiles = fh.search(fileName);
-			System.out.println(relativise(matchingFiles[0].getAbsolutePath()));
+			final String relativePath = relativise(matchingFiles[0].getAbsolutePath());
 			if (matchingFiles.length != 0) {
-				final Class<?> c = Class.forName("implementation.user_commands.CoordinatesXY");
+				final Class<?> c = extractClass(relativePath);
 				System.out.println(c);
 				m = c.getMethod("instantiate", null);
 				System.out.println(m);
 				instance = m.invoke(null, null);
 			}
-		} catch (final ClassNotFoundException | NoSuchMethodException | SecurityException
-				| IllegalArgumentException e) {
+		} catch (final NoSuchMethodException | SecurityException | IllegalArgumentException e) {
 			return null;
 		}
 
@@ -49,7 +48,25 @@ public class JclOptFactory {
 		return new File(base).toURI().relativize(new File(filepath).toURI()).getPath();
 	}
 
-//	private String toPackage(String relativeFilepath) {
-//
-//	}
+	@SuppressWarnings("finally")
+	private Class<?> extractClass(final String relativeFilepath) {
+
+		final String dotedString = relativeFilepath.replace('/', '.');
+		System.out.println(dotedString);
+		final String[] possiblePackage = dotedString.split("\\.");
+		System.out.println(possiblePackage);
+		Class<?> minhaClasse = null;
+		final StringBuilder sb = new StringBuilder();
+		for (int i = possiblePackage.length - 2; i > 0; i--) {
+			sb.insert(0, possiblePackage[i]);
+			System.out.println(sb.toString());
+			try {
+				minhaClasse = Class.forName(sb.toString());
+			} finally {
+				sb.insert(0, ".");
+				continue;
+			}
+		}
+		return minhaClasse;
+	}
 }
