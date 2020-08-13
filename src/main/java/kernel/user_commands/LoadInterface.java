@@ -1,7 +1,12 @@
 package kernel.user_commands;
 
-public interface LoadInterface {
+import common.JclOptObject;
+
+public interface LoadInterface extends JclOptObject {
 
 	public void load(String filePath);
+
+	@Override
+	LoadInterface getInstance();
 
 }

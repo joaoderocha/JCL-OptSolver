@@ -1,10 +1,10 @@
 package kernel.user_commands;
 
-import kernel.utils.Pair;
 import implementations.dm_kernel.user.JCL_FacadeImpl;
 import interfaces.kernel.JCL_facade;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
+import kernel.utils.Pair;
 
 /**
  *
@@ -24,4 +24,5 @@ public abstract class LoadAbstract implements LoadInterface {
 		final ObjectSet<String> vertices = new ObjectOpenHashSet<>();
 		jcl.instantiateGlobalVar("vertices", vertices);
 	}
+
 }
