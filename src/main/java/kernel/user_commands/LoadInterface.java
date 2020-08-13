@@ -1,14 +1,13 @@
 package kernel.user_commands;
 
-import java.util.Map;
-
 import common.JclOptObject;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
 
 public interface LoadInterface extends JclOptObject {
 
-	public Map<String, Object> load(String filePath);
+	public Object2ObjectMap<String, Object> load(String filePath);
 
 	@Override
-	LoadInterface getInstance();
+	JclOptObject getInstance();
 
 }

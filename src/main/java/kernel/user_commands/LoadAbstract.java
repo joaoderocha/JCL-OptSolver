@@ -1,9 +1,7 @@
 package kernel.user_commands;
 
-import java.util.Map;
-
-import implementations.dm_kernel.user.JCL_FacadeImpl;
-import interfaces.kernel.JCL_facade;
+import it.unimi.dsi.fastutil.objects.Object2ObjectMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.objects.ObjectSet;
 import kernel.utils.Pair;
@@ -16,16 +14,16 @@ import kernel.utils.Pair;
 public abstract class LoadAbstract implements LoadInterface {
 
 	@Override
-	public Map<String, Object> load(final String filePath) {
-		final JCL_facade jcl = JCL_FacadeImpl.getInstance();
-		jcl.instantiateGlobalVar("upper", Double.valueOf(Double.MAX_VALUE));
-		jcl.instantiateGlobalVar("lower", Double.valueOf(Double.MIN_VALUE));
-		jcl.instantiateGlobalVar("path", "");
+	public Object2ObjectMap<String, Object> load(final String filePath) {
+		final Object2ObjectMap<String, Object> map = new Object2ObjectOpenHashMap<>();
+		map.put("upper", Double.valueOf(Double.MAX_VALUE));
+		map.put("lower", Double.valueOf(Double.MIN_VALUE));
+		map.put("path", "");
 		final Pair<String, Double> x = new Pair<>("", Double.MAX_VALUE);
-		jcl.instantiateGlobalVar("bestResult", x);
+		map.put("bestResult", x);
 		final ObjectSet<String> vertices = new ObjectOpenHashSet<>();
-		jcl.instantiateGlobalVar("vertices", vertices);
-		return null;
+		map.put("vertices", vertices);
+		return map;
 	}
 
 }
